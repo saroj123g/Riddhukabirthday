@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Riddhuu 🎂</title>
+<style>
+  :root {
+    --accent: #ff6ba0;
+    --bg: #fff6fa;
+    --text: #3d003d;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    text-align: center;
+    overflow-x: hidden;
+  }
+
+  section {
+    display: none;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  section.active {
+    display: flex;
+    animation: fadeIn 1s ease;
+  }
+
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+
+  button {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 20px;
+    font-size: 1rem;
+    margin-top: 20px;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(255, 107, 160, 0.3);
+  }
+
+  button:hover {
+    transform: scale(1.05);
+  }
+
+  h1 {
+    font-size: 2em;
+    color: var(--accent);
+  }
+
+  .cake {
+    position: relative;
+    width: 200px;
+    height: 120px;
+    background: linear-gradient(#ffb6d1, #ff6ba0);
+    border-radius: 20px;
+    margin-top: 20px;
+  }
+
+  .candle {
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 60px;
+    background: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .flame {
+    position: absolute;
+    top: -25px;
+    left: 2px;
+    width: 16px;
+    height: 25px;
+    background: radial-gradient(ellipse at center, gold 0%, orange 70%, red 100%);
+    border-radius: 50%;
+    animation: flicker 0.3s infinite alternate;
+  }
+
+  @keyframes flicker {
+    from { transform: scaleY(1); opacity: 1; }
+    to { transform: scaleY(0.9); opacity: 0.8; }
+  }
+
+  .hidden { display:none; }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .gallery img {
+    width: 100%;
+    border-radius: 10px;
+    height: 120px;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  .secret-box {
+    margin-top: 20px;
+    background: white;
+    padding: 12px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    overflow: hidden;
+    position: relative;
+    cursor: grab;
+  }
+
+  .secret-text {
+    position: absolute;
+    top: 0; left: 100%;
+    width: 100%; height: 100%;
+    display: flex; justify-content: center; align-items: center;
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 1.3rem;
+    transition: transform 0.4s;
+  }
+
+  .secret-text.revealed {
+    left: 0;
+    transform: translateX(0);
+  }
+
+  #confetti {
+    position: fixed;
+    left: 0; top: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 999;
+  }
+
+  iframe {
+    width: 90%;
+    height: 240px;
+    border-radius: 12px;
+    margin-top: 10px;
+  }
+
+  /* Glowing secret letter button */
+  #letterButton {
+    display: none;
+    background: linear-gradient(45deg, #ff85c1, #ffb3d9, #ff85c1);
+    color: white;
+    font-size: 1.1rem;
+    padding: 14px 26px;
+    border: none;
+    border-radius: 30px;
+    margin-top: 25px;
+    animation: glow 2s infinite alternate;
+  }
+
+  @keyframes glow {
+    from { box-shadow: 0 0 10px #ff6ba0; }
+    to { box-shadow: 0 0 25px #ff6ba0; }
+  }
+</style>
+</head>
+<body>
+
+<div id="confetti"></div>
+
+<!-- Surprise 1 -->
+<section id="s1" class="active">
+  <h1>koi beeee kaminnn 💖</h1>
+  <p>Ready for something special today? 😚🎁</p>
+  <button onclick="next(2)">Tap to Begin</button>
+</section>
+
+<!-- Surprise 2 -->
+<section id="s2">
+  <h1>Make a wish 🎂</h1>
+  <div class="cake">
+    <div class="candle" id="candle">
+      <div class="flame" id="flame"></div>
+    </div>
+  </div>
+  <p>Tap the candle to blow it out 💨</p>
+</section>
+
+<!-- Surprise 3 -->
+<section id="s3">
+  <h1>Your wish is my promise 💞</h1>
+  <p>Now, let’s look back at our memories together...</p>
+  <button onclick="next(4)">Next Surprise ➡</button>
+</section>
+
+<!-- Surprise 4 -->
+<section id="s4">
+  <h1>Our Memories 📸</h1>
+  <div class="gallery">
+    <img src="photo1.jpeg" alt="Memory 1">
+    <img src="photo2.jpeg" alt="Memory 2">
+    <img src="photo3.jpeg" alt="Memory 3">
+    <img src="photo4.jpeg" alt="Memory 4">
+    <img src="photo5.jpeg" alt="Memory 5">
+    <img src="photo6.jpeg" alt="Memory 6">
+  </div>
+  <button onclick="next(5)">Next Surprise ➡</button>
+</section>
+
+<!-- Surprise 5 -->
+<section id="s5">
+  <h1>oo song sun ne hamesha mane tharii ij yaad aave 😭💌</h1>
+  <iframe src="https://www.youtube.com/embed/2vKMY75kvjI?si=Np2mWXb4i-CdxdqP" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  <button onclick="next(6)">Final Surprise ➡</button>
+</section>
+
+<!-- Surprise 6 -->
+<section id="s6">
+  <h1>Happy Birthday, My Riddhuu 🎉</h1>
+  <p style="max-width: 700px; line-height: 1.7; margin-top: 10px;">
+    From the very first day — <strong>12 September 2025</strong> — everything changed for me.  
+    You filled my days with laughter, my nights with peace, and my world with warmth.  
+    Every little thing you do makes me fall for you again. Your smile, your voice, your care — they all feel like home.  
+    No matter how far or near, you’re always in my heart.  
+    I’m so lucky to call you mine, my cute little Riddhuu 💞
+  </p>
+
+  <div class="secret-box" id="secretBox">
+    <div class="secret-text" id="secretText">I loveee youu sooo much each and every day 💖</div>
+    <p>👉 Swipe to reveal your secret message</p>
+  </div>
+
+  <button id="letterButton" onclick="openLetter()">💌 Secret Letter for You 💌</button>
+</section>
+
+<script>
+let step = 1;
+
+function next(n) {
+  document.querySelector(`#s${step}`).classList.remove('active');
+  document.querySelector(`#s${n}`).classList.add('active');
+  step = n;
+}
+
+// Candle blow
+const candle = document.getElementById('candle');
+const flame = document.getElementById('flame');
+candle.addEventListener('click', () => {
+  flame.classList.add('hidden');
+  setTimeout(() => next(3), 2000);
+});
+
+// Continuous hearts
+function continuousHearts() {
+  const confetti = document.getElementById('confetti');
+  const heart = document.createElement('div');
+  heart.textContent = '💖';
+  heart.style.position = 'absolute';
+  heart.style.left = Math.random() * 100 + '%';
+  heart.style.top = '-10px';
+  heart.style.fontSize = Math.random() * 22 + 14 + 'px';
+  heart.style.transition = 'transform 3.5s linear, opacity 3.5s';
+  confetti.appendChild(heart);
+  setTimeout(() => {
+    heart.style.transform = `translateY(${window.innerHeight}px) rotate(${Math.random()*360}deg)`;
+    heart.style.opacity = 0;
+  }, 50);
+  setTimeout(() => heart.remove(), 4000);
+}
+setInterval(continuousHearts, 300);
+
+// Swipe reveal secret
+let startX = 0;
+const secretBox = document.getElementById('secretBox');
+const secretText = document.getElementById('secretText');
+const letterButton = document.getElementById('letterButton');
+
+secretBox.addEventListener('touchstart', (e) => {
+  startX = e.touches[0].clientX;
+});
+
+secretBox.addEventListener('touchmove', (e) => {
+  const moveX = e.touches[0].clientX - startX;
+  if (moveX > 80) {
+    secretText.classList.add('revealed');
+    letterButton.style.display = 'inline-block';
+  }
+});
+
+function openLetter() {
+  window.open('Riddhuu_Birthday_Letter_Decorative.pdf', '_blank');
+}
+</script>
+</body>
+</html>
